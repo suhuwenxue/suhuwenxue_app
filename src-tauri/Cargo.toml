@@ -1,0 +1,37 @@
+[package]
+name = "suhuwenxue-app"
+version = "0.0.0-beat.0"
+description = "小白狐的工具杂烩 | Little white Fox's tool hodgepodge"
+authors = ["github@suhuwenxue  xiehuqiqi"]
+license = "MIT License"
+repository = "http://github.com/suhuwenxue/"
+edition = "2021"
+rust-version = "1.77.2"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "suhuwenxueapp_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0.1" }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+log = "0.4"
+tauri = { version = "2.0.2" }
+tauri-plugin-log = "2.0.0-rc"
+
+
+[profile.dev]
+incremental = true # Compile your binary in smaller steps.
+
+[profile.release]
+codegen-units = 1 # Allows LLVM to perform better optimization.
+lto = true # Enables link-time-optimizations.
+opt-level = "s" # Prioritizes small binary size. Use `3` if you prefer speed.
+panic = "abort" # Higher performance by disabling panic handlers.
+strip = true # Ensures debug symbols are removed.
+
